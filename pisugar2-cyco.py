@@ -43,7 +43,7 @@ class PiSugar(plugins.Plugin):
             LabeledValue(
                 color=BLACK,
                 label=self.options["label"],
-                value=self.options["placeholder"],
+                value="----",
                 position=(int(self.options["x_coord"]),
                 int(self.options["y_coord"])),
                 label_font=fonts.Bold,
@@ -56,8 +56,8 @@ class PiSugar(plugins.Plugin):
                 "chg",
                 LabeledValue(
                     color=BLACK,
-                    label=self.options["label"],
-                    value=self.options["placeholder"],
+                    label="",
+                    value="----",
                     position=(int(self.options["x_coord"]),
                     int(self.options["y_coord"])),
                     label_font=fonts.Bold,
@@ -88,7 +88,7 @@ class PiSugar(plugins.Plugin):
 
         if capacity <= self.options["shutdown"]:
             logging.info(
-                f"[pisugar2] Empty battery (<= {self.options['shutdown']}): shuting down"
+                f"[pisugar2-cyco] Empty battery (<= {self.options['shutdown']}): shuting down"
             )
             ui.update(force=True, new_data={"status": "Battery exhausted, bye ..."})
             time.sleep(3)
