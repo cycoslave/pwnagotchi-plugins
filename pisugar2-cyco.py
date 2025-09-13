@@ -43,7 +43,7 @@ class PiSugar(plugins.Plugin):
             LabeledValue(
                 color=BLACK,
                 label=self.options["label"],
-                value="----",
+                value="0%",
                 position=(int(self.options["x_coord"]),
                 int(self.options["y_coord"])),
                 label_font=fonts.Bold,
@@ -57,7 +57,7 @@ class PiSugar(plugins.Plugin):
                 LabeledValue(
                     color=BLACK,
                     label="",
-                    value="----",
+                    value="",
                     position=(int(self.options["x_coord"]),
                     int(self.options["y_coord"])),
                     label_font=fonts.Bold,
