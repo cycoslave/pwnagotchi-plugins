@@ -27,7 +27,7 @@ class PiSugar(plugins.Plugin):
         from pisugar2 import PiSugar2
 
         self.ps = PiSugar2()
-        logging.info("[pisugar2] plugin loaded.")
+        logging.info("[pisugar2-cyco] plugin loaded.")
 
         if self.ps.get_battery_led_amount().value == 2:
             self.is_new_model = True
@@ -42,9 +42,10 @@ class PiSugar(plugins.Plugin):
             "bat",
             LabeledValue(
                 color=BLACK,
-                label="",
-                value="----",
-                position=(150, 0),
+                label=self.options["label"],
+                value=self.options["placeholder"],
+                position=(int(self.options["x_coord"]),
+                int(self.options["y_coord"])),
                 label_font=fonts.Bold,
                 text_font=fonts.Medium,
             ),
@@ -55,9 +56,10 @@ class PiSugar(plugins.Plugin):
                 "chg",
                 LabeledValue(
                     color=BLACK,
-                    label="",
-                    value="",
-                    position=(150, 0),
+                    label=self.options["label"],
+                    value=self.options["placeholder"],
+                    position=(int(self.options["x_coord"]),
+                    int(self.options["y_coord"])),
                     label_font=fonts.Bold,
                     text_font=fonts.Bold,
                 ),
