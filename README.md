@@ -10,4 +10,5 @@ main.plugins.pisugar2-cyco.enabled = true
 main.plugins.pisugar2-cyco.x_coord = 150
 main.plugins.pisugar2-cyco.y_coord = 0
 main.plugins.pisugar2-cyco.label = "BAT"
+main.plugins.pisugar2-cyco.shutdown = 5
 ```
