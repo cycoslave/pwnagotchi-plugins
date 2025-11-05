@@ -14,7 +14,7 @@ import time
 
 class PiSugar(plugins.Plugin):
     __author__ = "cycoslave"
-    __version__ = "0.0.1"
+    __version__ = "1.0.0"
     __license__ = "GPL3"
     __description__ = "A fancy plugin that will add a voltage indicator for the PiSugar 2"
 
