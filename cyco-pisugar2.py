@@ -12,7 +12,7 @@ import pwnagotchi.plugins as plugins
 import pwnagotchi
 import time
 
-class PiSugar(plugins.Plugin):
+class CycoPiSugar2(plugins.Plugin):
     __author__ = "cycoslave"
     __version__ = "1.0.0"
     __license__ = "GPL3"
@@ -28,7 +28,7 @@ class PiSugar(plugins.Plugin):
         from pisugar2 import PiSugar2
 
         self.ps = PiSugar2()
-        logging.info("[pisugar2-cyco] plugin loaded.")
+        logging.info("[cyco-pisugar2] plugin loaded.")
 
         if self.ps.get_battery_led_amount().value == 2:
             self.is_new_model = True
@@ -89,7 +89,7 @@ class PiSugar(plugins.Plugin):
 
         if capacity <= self.options["shutdown"]:
             logging.info(
-                f"[pisugar2-cyco] Empty battery (<= {self.options['shutdown']}): shuting down"
+                f"[cyco-pisugar2] Empty battery (<= {self.options['shutdown']}): shuting down"
             )
             ui.update(force=True, new_data={"status": "Battery exhausted, bye ..."})
             time.sleep(3)
