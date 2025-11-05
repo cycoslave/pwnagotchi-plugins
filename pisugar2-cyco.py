@@ -98,5 +98,5 @@ class PiSugar(plugins.Plugin):
     def on_webhook(self, path, request):
         # Redirect to PiSugar web UI
         host = request.host.split(':')[0]
-        pisugar_url = f'http://{host}:{self.options["pisugar_port"]}'
+        pisugar_url = f'http://{host}:8421'
         return redirect(pisugar_url, code=302)
