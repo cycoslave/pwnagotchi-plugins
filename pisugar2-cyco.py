@@ -6,6 +6,7 @@ import logging
 
 from pwnagotchi.ui.components import LabeledValue
 from pwnagotchi.ui.view import BLACK
+from flask import redirect
 import pwnagotchi.ui.fonts as fonts
 import pwnagotchi.plugins as plugins
 import pwnagotchi
@@ -93,3 +94,7 @@ class PiSugar(plugins.Plugin):
             ui.update(force=True, new_data={"status": "Battery exhausted, bye ..."})
             time.sleep(3)
             pwnagotchi.shutdown()
+            
+    def on_webhook(self, path, request):
+        # Redirect to PiSugar web UI
+        return redirect('http://localhost:8421', code=302)
