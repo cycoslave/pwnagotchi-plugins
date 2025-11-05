@@ -5,7 +5,7 @@ import os
 import subprocess
 from datetime import datetime
 
-class PwnBackup(plugins.Plugin):
+class CycoBackup(plugins.Plugin):
     __author__ = 'tonyroy@wcksoft.com'
     __version__ = '1.0.0'
     __license__ = 'GPL3'
@@ -13,7 +13,7 @@ class PwnBackup(plugins.Plugin):
 
     def __init__(self):
         self.ready = False
-        self.status = StatusFile('/root/.pwnbackup-status')
+        self.status = StatusFile('/root/.cyco-backup-status')
 
     def on_loaded(self):
         # Default configuration
@@ -30,7 +30,7 @@ class PwnBackup(plugins.Plugin):
         os.makedirs(self.options['backup_path'], exist_ok=True)
         
         self.ready = True
-        logging.info("[PWNBACKUP] Plugin loaded successfully")
+        logging.info("[cyco-backup] Plugin loaded successfully")
 
     def on_internet_available(self, agent):
         if not self.ready:
@@ -38,7 +38,7 @@ class PwnBackup(plugins.Plugin):
         
         # Check if it's time to backup
         if self.status.newer_then_days(self.options['interval_days']):
-            logging.info("[PWNBACKUP] Backup already done recently")
+            logging.info("[cyco-backup] Backup already done recently")
             return
         
         self._create_backup(agent)
@@ -54,7 +54,7 @@ class PwnBackup(plugins.Plugin):
             backup_filename = f"pwny-backup-{timestamp}.tar.gz"
             backup_path = os.path.join(self.options['backup_path'], backup_filename)
             
-            logging.info(f"[PWNBACKUP] Creating backup: {backup_path}")
+            logging.info(f"[cyco-backup] Creating backup: {backup_path}")
             
             # Define files and directories to backup
             backup_items = [
@@ -66,8 +66,6 @@ class PwnBackup(plugins.Plugin):
                 '/root/.ohc_uploads',
                 '/root/.wigle_uploads',
                 '/root/.wpa_sec_uploads',
-                '/root/handshakes/',
-                '/root/peers/',
                 '/root/.ssh/',
                 '/root/.bashrc',
                 '/root/.profile',
@@ -87,6 +85,8 @@ class PwnBackup(plugins.Plugin):
                 '/home/pi/.ssh/',
                 '/home/pi/.bashrc',
                 '/home/pi/.profile',
+                '/home/pi/handshakes/',
+                '/home/pi/peers/',
                 '/var/log/pwnagotchi.log'
             ]
             
@@ -105,7 +105,7 @@ class PwnBackup(plugins.Plugin):
             stdout, stderr = process.communicate()
             
             if process.returncode == 0:
-                logging.info(f"[PWNBACKUP] Backup created successfully: {backup_path}")
+                logging.info(f"[cyco-backup] Backup created successfully: {backup_path}")
                 display.set('status', 'Backup complete!')
                 display.update()
                 self.status.update()
@@ -116,7 +116,7 @@ class PwnBackup(plugins.Plugin):
                 raise Exception(f"Tar command failed: {stderr.decode()}")
                 
         except Exception as e:
-            logging.error(f"[PWNBACKUP] Backup failed: {e}")
+            logging.error(f"[cyco-backup] Backup failed: {e}")
             display.set('status', 'Backup failed!')
             display.update()
 
@@ -135,14 +135,14 @@ class PwnBackup(plugins.Plugin):
             # Remove old backups
             for filepath, _ in backup_files[self.options['max_backups']:]:
                 os.remove(filepath)
-                logging.info(f"[PWNBACKUP] Removed old backup: {filepath}")
+                logging.info(f"[cyco-backup] Removed old backup: {filepath}")
                 
         except Exception as e:
-            logging.error(f"[PWNBACKUP] Cleanup failed: {e}")
+            logging.error(f"[cyco-backup] Cleanup failed: {e}")
 
     def on_ui_setup(self, ui):
         # Add UI element to show last backup time
         pass
 
     def on_unload(self, ui):
-        logging.info("[PWNBACKUP] Plugin unloaded")
+        logging.info("[cyco-backup] Plugin unloaded")
