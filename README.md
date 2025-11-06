@@ -1,7 +1,7 @@
 # pwnagotchi-plugins
 Plugins for pwnagotchi that I either modified or created.
 
-## pisugar2-cyco.py
+## cyco-pisugar2.py
 I just did changes to an existing plugin to be able to change the location on the screen without the need to change the actual plugin python script.
 
 ### Install Pisugar
@@ -15,13 +15,34 @@ git clone https://github.com/PiSugar/pisugar2py.git
 
 ### Config.toml
 ```
-main.plugins.pisugar2-cyco.enabled = true
-main.plugins.pisugar2-cyco.x_coord = 150
-main.plugins.pisugar2-cyco.y_coord = 0
-main.plugins.pisugar2-cyco.label = "BAT"
-main.plugins.pisugar2-cyco.shutdown = 5
-main.plugins.pisugar2-cyco.sync_rtc_on_boot = true
+main.plugins.cyco-pisugar2.enabled = true
+main.plugins.cyco-pisugar2.x_coord = 150
+main.plugins.cyco-pisugar2.y_coord = 0
+main.plugins.cyco-pisugar2.label = ""
+main.plugins.cyco-pisugar2.shutdown = 5
+main.plugins.cyco-pisugar2.sync_rtc_on_boot = true
 ```
 
-## pwnbackup.py
-This is a work in progress currently.
+## cyco-backup.py
+A plugin that does regular backup of your pwnagotchi, you can download them from the webui.
+
+### Config.toml
+```
+main.plugins.cyco-backup.enabled = true
+main.plugins.cyco-backup.backup_path = "/root/backups/"
+main.plugins.cyco-backup.interval_days = 7
+main.plugins.cyco-backup.max_backups = 5
+```
+
+## cyco-btsniffer.py
+A plugin that keeps a record of seen bluetooth devices.
+
+### Config.toml
+```
+main.plugins.cyco-btsniffer.enabled = true
+main.plugins.cyco-btsniffer.timer = 45
+main.plugins.cyco-btsniffer.devices_file = "/root/bluetooth_devices.json"
+main.plugins.cyco-btsniffer.count_interval = 300
+main.plugins.cyco-btsniffer.bt_x_coord = 70
+main.plugins.cyco-btsniffer.bt_y_coord = 32
+```
