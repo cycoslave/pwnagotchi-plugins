@@ -10,6 +10,7 @@ I just did changes to an existing plugin to be able to change the location on th
 curl http://cdn.pisugar.com/release/Pisugar-power-manager.sh | sudo bash
 
 # Download the plugin and support library
+# the content need to be copied in your pythons packages (/usr/local/lib/python3.11/dist-packages/)
 git clone https://github.com/PiSugar/pisugar2py.git
 ```
 
