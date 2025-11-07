@@ -31,8 +31,15 @@ A plugin that does regular backup of your pwnagotchi, you can download them from
 ```
 main.plugins.cyco-backup.enabled = true
 main.plugins.cyco-backup.backup_path = "/root/backups/"
-main.plugins.cyco-backup.interval_days = 7
+main.plugins.cyco-backup.interval_hours = 1
 main.plugins.cyco-backup.max_backups = 5
+main.plugins.cyco-backup.backup_config = true
+main.plugins.cyco-backup.backup_system_files = true
+main.plugins.cyco-backup.backup_custom_plugins = true
+main.plugins.cyco-backup.backup_handshakes = true
+main.plugins.cyco-backup.backup_btsniffer_data = true
+main.plugins.cyco-backup.backup_logs = true
+main.plugins.cyco-backup.backup_last_session = false
 ```
 
 ## cyco-btsniffer.py
